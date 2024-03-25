@@ -14,8 +14,8 @@ const[fontsLoaded] = useFonts({Roboto_400Regular, Roboto_700Bold});
     <ThemeProvider theme={theme}>
       <StatusBar
         barStyle='light-content'
-        backgroundColor='transparent'
-        translucent={true}
+        //backgroundColor='transparent'
+        //translucent={true}
       />
 
       { fontsLoaded ? <Groups/> : <Loading/> } 
