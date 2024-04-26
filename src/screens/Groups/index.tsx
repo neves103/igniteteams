@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useCallback} from 'react';
 import { FlatList } from 'react-native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { groupsGetAll } from '@storage/group/groupsGetAll';
 
 import { Header } from '@components/Header';
 import { Container} from './styles';
@@ -8,9 +10,30 @@ import { GroupCard } from '@components/GroupCard';
 import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
 
-export  function Groups(){
-  const [ group, setGroup ] = useState<string[]>(["jhjhkjhkjh","jhjhkjhkjcxch","jhjhkjhkjhxc"]);
 
+export  function Groups(){
+  const [ group, setGroup ] = useState<string[]>([]);
+
+  const navigation = useNavigation();
+
+
+  function handleNewGroup(){
+    navigation.navigate('new');
+  }
+
+  async function fetchGroups() {
+    try{
+      const data = await groupsGetAll();
+      setGroup(data);
+
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+  useFocusEffect(useCallback(() => {
+      fetchGroups();
+    }, []));
 
   return (
     <Container>
@@ -36,6 +59,7 @@ export  function Groups(){
 
         <Button 
           title="Criar nova turma"
+          onPress={handleNewGroup}
         />
 
     </Container>
