@@ -50,6 +50,7 @@ export function NewGroup(){
                 <Input 
                     placeholder='Nome da Turma'
                     onChangeText={setGroup}
+                    onSubmitEditing={handleNew}
                 />
                 <Button 
                     title='Criar' 

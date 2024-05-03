@@ -4,7 +4,7 @@ import { AppError } from '@utils/AppError';
 import { PLAYER_COLLECTION } from '@storage/storageConfig';
 
 import { PlayerStorageDTO } from './PlayerStorageDTO';
-import { playersGetByGroup } from './playersGetBygroup';
+import { playersGetByGroup } from './playersGetByGroup';
 
 export async function playerAddByGroup(newPlayer: PlayerStorageDTO, group: string){
     try{
